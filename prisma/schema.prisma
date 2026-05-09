@@ -1,0 +1,174 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+/// This model has constraints using non-default deferring rules and requires additional setup for migrations. Visit https://pris.ly/d/constraint-deferring for more info.
+model agent_memories {
+  id              String         @id @db.Uuid
+  user_id         String?        @db.Uuid
+  conversation_id String?        @db.Uuid
+  key             String         @db.VarChar(255)
+  value           String
+  metadata        Json?
+  created_at      DateTime       @db.Timestamp(6)
+  updated_at      DateTime       @db.Timestamp(6)
+  conversations   conversations? @relation(fields: [conversation_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  users           users?         @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+
+  @@index([conversation_id])
+  @@index([key])
+  @@index([user_id])
+}
+
+/// This model has constraints using non-default deferring rules and requires additional setup for migrations. Visit https://pris.ly/d/constraint-deferring for more info.
+model agent_tasks {
+  id                 String               @id @db.Uuid
+  conversation_id    String?              @db.Uuid
+  message_id         String?              @db.Uuid
+  type               task_type
+  status             task_status
+  input              Json
+  result             Json?
+  error              String?
+  started_at         DateTime?            @db.Timestamp(6)
+  completed_at       DateTime?            @db.Timestamp(6)
+  created_at         DateTime             @db.Timestamp(6)
+  updated_at         DateTime             @db.Timestamp(6)
+  conversations      conversations?       @relation(fields: [conversation_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  messages           messages?            @relation(fields: [message_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  app_install_events app_install_events[]
+
+  @@index([conversation_id])
+  @@index([created_at])
+  @@index([message_id])
+  @@index([status])
+  @@index([type])
+}
+
+model ai_provider_settings {
+  id           String   @id @db.Uuid
+  provider     String   @db.VarChar(100)
+  model        String   @db.VarChar(100)
+  api_key_name String?  @db.VarChar(100)
+  is_active    Boolean
+  created_at   DateTime @db.Timestamp(6)
+  updated_at   DateTime @db.Timestamp(6)
+
+  @@index([is_active])
+  @@index([provider])
+}
+
+/// This model has constraints using non-default deferring rules and requires additional setup for migrations. Visit https://pris.ly/d/constraint-deferring for more info.
+model app_install_events {
+  id               String          @id @db.Uuid
+  task_id          String          @db.Uuid
+  installed_app_id String?         @db.Uuid
+  event_type       String          @db.VarChar(100)
+  message          String?
+  raw_output       String?
+  created_at       DateTime        @db.Timestamp(6)
+  installed_apps   installed_apps? @relation(fields: [installed_app_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  agent_tasks      agent_tasks     @relation(fields: [task_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+
+  @@index([created_at])
+  @@index([installed_app_id])
+  @@index([task_id])
+}
+
+/// This model has constraints using non-default deferring rules and requires additional setup for migrations. Visit https://pris.ly/d/constraint-deferring for more info.
+model conversations {
+  id             String           @id @db.Uuid
+  user_id        String           @db.Uuid
+  title          String           @db.VarChar(255)
+  summary        String?
+  model          String?          @db.VarChar(100)
+  created_at     DateTime         @db.Timestamp(6)
+  updated_at     DateTime         @db.Timestamp(6)
+  agent_memories agent_memories[]
+  agent_tasks    agent_tasks[]
+  users          users            @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  messages       messages[]
+
+  @@index([created_at])
+  @@index([user_id])
+}
+
+model installed_apps {
+  id                 String               @id @db.Uuid
+  app_name           String               @db.VarChar(255)
+  package_id         String               @unique(map: "installed_apps_package_id_idx") @db.VarChar(255)
+  source             String               @db.VarChar(50)
+  version            String?              @db.VarChar(100)
+  status             app_status
+  installed_at       DateTime?            @db.Timestamp(6)
+  created_at         DateTime             @db.Timestamp(6)
+  updated_at         DateTime             @db.Timestamp(6)
+  app_install_events app_install_events[]
+
+  @@index([app_name])
+  @@index([status])
+}
+
+/// This model has constraints using non-default deferring rules and requires additional setup for migrations. Visit https://pris.ly/d/constraint-deferring for more info.
+model messages {
+  id              String        @id @db.Uuid
+  conversation_id String        @db.Uuid
+  role            message_role
+  content         String
+  metadata        Json?
+  token_count     Int?
+  created_at      DateTime      @db.Timestamp(6)
+  agent_tasks     agent_tasks[]
+  conversations   conversations @relation(fields: [conversation_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+
+  @@index([conversation_id])
+  @@index([created_at])
+  @@index([role])
+}
+
+model users {
+  id             String           @id @db.Uuid
+  name           String           @db.VarChar(120)
+  email          String?          @unique @db.VarChar(255)
+  avatar_url     String?
+  created_at     DateTime         @db.Timestamp(6)
+  updated_at     DateTime         @db.Timestamp(6)
+  agent_memories agent_memories[]
+  conversations  conversations[]
+}
+
+enum app_status {
+  installed
+  installing
+  failed
+  removed
+  unknown
+}
+
+enum message_role {
+  user
+  assistant
+  system
+  tool
+}
+
+enum task_status {
+  pending
+  running
+  completed
+  failed
+  cancelled
+}
+
+enum task_type {
+  chat
+  install_app
+  uninstall_app
+  search_app
+  system_action
+}
