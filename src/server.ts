@@ -2,6 +2,7 @@ import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
 import { prisma } from "./db/prisma";
+import chatRoutes from "./routes/chat.routes";
 
 dotenv.config();
 
@@ -35,6 +36,8 @@ app.get("/db-test", async (_req, res) => {
     });
   }
 });
+
+app.use("/chat", chatRoutes)
 
 app.listen(PORT, () => {
   console.log("Server is running on Port:", PORT);
