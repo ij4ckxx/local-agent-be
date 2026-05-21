@@ -192,6 +192,7 @@ export type usersWhereInput = {
   updated_at?: Prisma.DateTimeFilter<"users"> | Date | string
   agent_memories?: Prisma.Agent_memoriesListRelationFilter
   conversations?: Prisma.ConversationsListRelationFilter
+  projects?: Prisma.ProjectsListRelationFilter
 }
 
 export type usersOrderByWithRelationInput = {
@@ -203,6 +204,7 @@ export type usersOrderByWithRelationInput = {
   updated_at?: Prisma.SortOrder
   agent_memories?: Prisma.agent_memoriesOrderByRelationAggregateInput
   conversations?: Prisma.conversationsOrderByRelationAggregateInput
+  projects?: Prisma.projectsOrderByRelationAggregateInput
 }
 
 export type usersWhereUniqueInput = Prisma.AtLeast<{
@@ -217,6 +219,7 @@ export type usersWhereUniqueInput = Prisma.AtLeast<{
   updated_at?: Prisma.DateTimeFilter<"users"> | Date | string
   agent_memories?: Prisma.Agent_memoriesListRelationFilter
   conversations?: Prisma.ConversationsListRelationFilter
+  projects?: Prisma.ProjectsListRelationFilter
 }, "id" | "email">
 
 export type usersOrderByWithAggregationInput = {
@@ -252,6 +255,7 @@ export type usersCreateInput = {
   updated_at: Date | string
   agent_memories?: Prisma.agent_memoriesCreateNestedManyWithoutUsersInput
   conversations?: Prisma.conversationsCreateNestedManyWithoutUsersInput
+  projects?: Prisma.projectsCreateNestedManyWithoutUserInput
 }
 
 export type usersUncheckedCreateInput = {
@@ -263,6 +267,7 @@ export type usersUncheckedCreateInput = {
   updated_at: Date | string
   agent_memories?: Prisma.agent_memoriesUncheckedCreateNestedManyWithoutUsersInput
   conversations?: Prisma.conversationsUncheckedCreateNestedManyWithoutUsersInput
+  projects?: Prisma.projectsUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type usersUpdateInput = {
@@ -274,6 +279,7 @@ export type usersUpdateInput = {
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   agent_memories?: Prisma.agent_memoriesUpdateManyWithoutUsersNestedInput
   conversations?: Prisma.conversationsUpdateManyWithoutUsersNestedInput
+  projects?: Prisma.projectsUpdateManyWithoutUserNestedInput
 }
 
 export type usersUncheckedUpdateInput = {
@@ -285,6 +291,7 @@ export type usersUncheckedUpdateInput = {
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   agent_memories?: Prisma.agent_memoriesUncheckedUpdateManyWithoutUsersNestedInput
   conversations?: Prisma.conversationsUncheckedUpdateManyWithoutUsersNestedInput
+  projects?: Prisma.projectsUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type usersCreateManyInput = {
@@ -381,6 +388,20 @@ export type usersUpdateOneRequiredWithoutConversationsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.usersUpdateToOneWithWhereWithoutConversationsInput, Prisma.usersUpdateWithoutConversationsInput>, Prisma.usersUncheckedUpdateWithoutConversationsInput>
 }
 
+export type usersCreateNestedOneWithoutProjectsInput = {
+  create?: Prisma.XOR<Prisma.usersCreateWithoutProjectsInput, Prisma.usersUncheckedCreateWithoutProjectsInput>
+  connectOrCreate?: Prisma.usersCreateOrConnectWithoutProjectsInput
+  connect?: Prisma.usersWhereUniqueInput
+}
+
+export type usersUpdateOneRequiredWithoutProjectsNestedInput = {
+  create?: Prisma.XOR<Prisma.usersCreateWithoutProjectsInput, Prisma.usersUncheckedCreateWithoutProjectsInput>
+  connectOrCreate?: Prisma.usersCreateOrConnectWithoutProjectsInput
+  upsert?: Prisma.usersUpsertWithoutProjectsInput
+  connect?: Prisma.usersWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.usersUpdateToOneWithWhereWithoutProjectsInput, Prisma.usersUpdateWithoutProjectsInput>, Prisma.usersUncheckedUpdateWithoutProjectsInput>
+}
+
 export type usersCreateWithoutAgent_memoriesInput = {
   id: string
   name: string
@@ -389,6 +410,7 @@ export type usersCreateWithoutAgent_memoriesInput = {
   created_at: Date | string
   updated_at: Date | string
   conversations?: Prisma.conversationsCreateNestedManyWithoutUsersInput
+  projects?: Prisma.projectsCreateNestedManyWithoutUserInput
 }
 
 export type usersUncheckedCreateWithoutAgent_memoriesInput = {
@@ -399,6 +421,7 @@ export type usersUncheckedCreateWithoutAgent_memoriesInput = {
   created_at: Date | string
   updated_at: Date | string
   conversations?: Prisma.conversationsUncheckedCreateNestedManyWithoutUsersInput
+  projects?: Prisma.projectsUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type usersCreateOrConnectWithoutAgent_memoriesInput = {
@@ -425,6 +448,7 @@ export type usersUpdateWithoutAgent_memoriesInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   conversations?: Prisma.conversationsUpdateManyWithoutUsersNestedInput
+  projects?: Prisma.projectsUpdateManyWithoutUserNestedInput
 }
 
 export type usersUncheckedUpdateWithoutAgent_memoriesInput = {
@@ -435,6 +459,7 @@ export type usersUncheckedUpdateWithoutAgent_memoriesInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   conversations?: Prisma.conversationsUncheckedUpdateManyWithoutUsersNestedInput
+  projects?: Prisma.projectsUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type usersCreateWithoutConversationsInput = {
@@ -445,6 +470,7 @@ export type usersCreateWithoutConversationsInput = {
   created_at: Date | string
   updated_at: Date | string
   agent_memories?: Prisma.agent_memoriesCreateNestedManyWithoutUsersInput
+  projects?: Prisma.projectsCreateNestedManyWithoutUserInput
 }
 
 export type usersUncheckedCreateWithoutConversationsInput = {
@@ -455,6 +481,7 @@ export type usersUncheckedCreateWithoutConversationsInput = {
   created_at: Date | string
   updated_at: Date | string
   agent_memories?: Prisma.agent_memoriesUncheckedCreateNestedManyWithoutUsersInput
+  projects?: Prisma.projectsUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type usersCreateOrConnectWithoutConversationsInput = {
@@ -481,6 +508,7 @@ export type usersUpdateWithoutConversationsInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   agent_memories?: Prisma.agent_memoriesUpdateManyWithoutUsersNestedInput
+  projects?: Prisma.projectsUpdateManyWithoutUserNestedInput
 }
 
 export type usersUncheckedUpdateWithoutConversationsInput = {
@@ -491,6 +519,67 @@ export type usersUncheckedUpdateWithoutConversationsInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   agent_memories?: Prisma.agent_memoriesUncheckedUpdateManyWithoutUsersNestedInput
+  projects?: Prisma.projectsUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type usersCreateWithoutProjectsInput = {
+  id: string
+  name: string
+  email?: string | null
+  avatar_url?: string | null
+  created_at: Date | string
+  updated_at: Date | string
+  agent_memories?: Prisma.agent_memoriesCreateNestedManyWithoutUsersInput
+  conversations?: Prisma.conversationsCreateNestedManyWithoutUsersInput
+}
+
+export type usersUncheckedCreateWithoutProjectsInput = {
+  id: string
+  name: string
+  email?: string | null
+  avatar_url?: string | null
+  created_at: Date | string
+  updated_at: Date | string
+  agent_memories?: Prisma.agent_memoriesUncheckedCreateNestedManyWithoutUsersInput
+  conversations?: Prisma.conversationsUncheckedCreateNestedManyWithoutUsersInput
+}
+
+export type usersCreateOrConnectWithoutProjectsInput = {
+  where: Prisma.usersWhereUniqueInput
+  create: Prisma.XOR<Prisma.usersCreateWithoutProjectsInput, Prisma.usersUncheckedCreateWithoutProjectsInput>
+}
+
+export type usersUpsertWithoutProjectsInput = {
+  update: Prisma.XOR<Prisma.usersUpdateWithoutProjectsInput, Prisma.usersUncheckedUpdateWithoutProjectsInput>
+  create: Prisma.XOR<Prisma.usersCreateWithoutProjectsInput, Prisma.usersUncheckedCreateWithoutProjectsInput>
+  where?: Prisma.usersWhereInput
+}
+
+export type usersUpdateToOneWithWhereWithoutProjectsInput = {
+  where?: Prisma.usersWhereInput
+  data: Prisma.XOR<Prisma.usersUpdateWithoutProjectsInput, Prisma.usersUncheckedUpdateWithoutProjectsInput>
+}
+
+export type usersUpdateWithoutProjectsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatar_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  agent_memories?: Prisma.agent_memoriesUpdateManyWithoutUsersNestedInput
+  conversations?: Prisma.conversationsUpdateManyWithoutUsersNestedInput
+}
+
+export type usersUncheckedUpdateWithoutProjectsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatar_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  agent_memories?: Prisma.agent_memoriesUncheckedUpdateManyWithoutUsersNestedInput
+  conversations?: Prisma.conversationsUncheckedUpdateManyWithoutUsersNestedInput
 }
 
 
@@ -501,11 +590,13 @@ export type usersUncheckedUpdateWithoutConversationsInput = {
 export type UsersCountOutputType = {
   agent_memories: number
   conversations: number
+  projects: number
 }
 
 export type UsersCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   agent_memories?: boolean | UsersCountOutputTypeCountAgent_memoriesArgs
   conversations?: boolean | UsersCountOutputTypeCountConversationsArgs
+  projects?: boolean | UsersCountOutputTypeCountProjectsArgs
 }
 
 /**
@@ -532,6 +623,13 @@ export type UsersCountOutputTypeCountConversationsArgs<ExtArgs extends runtime.T
   where?: Prisma.conversationsWhereInput
 }
 
+/**
+ * UsersCountOutputType without action
+ */
+export type UsersCountOutputTypeCountProjectsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.projectsWhereInput
+}
+
 
 export type usersSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -542,6 +640,7 @@ export type usersSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   updated_at?: boolean
   agent_memories?: boolean | Prisma.users$agent_memoriesArgs<ExtArgs>
   conversations?: boolean | Prisma.users$conversationsArgs<ExtArgs>
+  projects?: boolean | Prisma.users$projectsArgs<ExtArgs>
   _count?: boolean | Prisma.UsersCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["users"]>
 
@@ -576,6 +675,7 @@ export type usersOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = ru
 export type usersInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   agent_memories?: boolean | Prisma.users$agent_memoriesArgs<ExtArgs>
   conversations?: boolean | Prisma.users$conversationsArgs<ExtArgs>
+  projects?: boolean | Prisma.users$projectsArgs<ExtArgs>
   _count?: boolean | Prisma.UsersCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type usersIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -586,6 +686,7 @@ export type $usersPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   objects: {
     agent_memories: Prisma.$agent_memoriesPayload<ExtArgs>[]
     conversations: Prisma.$conversationsPayload<ExtArgs>[]
+    projects: Prisma.$projectsPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -990,6 +1091,7 @@ export interface Prisma__usersClient<T, Null = never, ExtArgs extends runtime.Ty
   readonly [Symbol.toStringTag]: "PrismaPromise"
   agent_memories<T extends Prisma.users$agent_memoriesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.users$agent_memoriesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$agent_memoriesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   conversations<T extends Prisma.users$conversationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.users$conversationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$conversationsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  projects<T extends Prisma.users$projectsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.users$projectsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$projectsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1463,6 +1565,30 @@ export type users$conversationsArgs<ExtArgs extends runtime.Types.Extensions.Int
   take?: number
   skip?: number
   distinct?: Prisma.ConversationsScalarFieldEnum | Prisma.ConversationsScalarFieldEnum[]
+}
+
+/**
+ * users.projects
+ */
+export type users$projectsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the projects
+   */
+  select?: Prisma.projectsSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the projects
+   */
+  omit?: Prisma.projectsOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.projectsInclude<ExtArgs> | null
+  where?: Prisma.projectsWhereInput
+  orderBy?: Prisma.projectsOrderByWithRelationInput | Prisma.projectsOrderByWithRelationInput[]
+  cursor?: Prisma.projectsWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ProjectsScalarFieldEnum | Prisma.ProjectsScalarFieldEnum[]
 }
 
 /**

@@ -84,6 +84,7 @@ model app_install_events {
 model conversations {
   id             String           @id @db.Uuid
   user_id        String           @db.Uuid
+  project_id     String?          @db.Uuid
   title          String           @db.VarChar(255)
   summary        String?
   model          String?          @db.VarChar(100)
@@ -92,6 +93,7 @@ model conversations {
   agent_memories agent_memories[]
   agent_tasks    agent_tasks[]
   users          users            @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  project        projects?        @relation(fields: [project_id], references: [id])
   messages       messages[]
 
   @@index([created_at])
@@ -140,6 +142,20 @@ model users {
   updated_at     DateTime         @db.Timestamp(6)
   agent_memories agent_memories[]
   conversations  conversations[]
+  projects       projects[]
+}
+
+model projects {
+  id         String   @id @db.Uuid
+  user_id    String   @db.Uuid
+  name       String
+  created_at DateTime
+  updated_at DateTime
+
+  user          users           @relation(fields: [user_id], references: [id])
+  conversations conversations[]
+
+  @@index([user_id])
 }
 
 enum app_status {

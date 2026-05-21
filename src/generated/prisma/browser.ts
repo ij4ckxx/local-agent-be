@@ -57,3 +57,8 @@ export type messages = Prisma.messagesModel
  * 
  */
 export type users = Prisma.usersModel
+/**
+ * Model projects
+ * 
+ */
+export type projects = Prisma.projectsModel

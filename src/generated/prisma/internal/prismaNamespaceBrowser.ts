@@ -58,7 +58,8 @@ export const ModelName = {
   conversations: 'conversations',
   installed_apps: 'installed_apps',
   messages: 'messages',
-  users: 'users'
+  users: 'users',
+  projects: 'projects'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -138,6 +139,7 @@ export type App_install_eventsScalarFieldEnum = (typeof App_install_eventsScalar
 export const ConversationsScalarFieldEnum = {
   id: 'id',
   user_id: 'user_id',
+  project_id: 'project_id',
   title: 'title',
   summary: 'summary',
   model: 'model',
@@ -186,6 +188,17 @@ export const UsersScalarFieldEnum = {
 } as const
 
 export type UsersScalarFieldEnum = (typeof UsersScalarFieldEnum)[keyof typeof UsersScalarFieldEnum]
+
+
+export const ProjectsScalarFieldEnum = {
+  id: 'id',
+  user_id: 'user_id',
+  name: 'name',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
+} as const
+
+export type ProjectsScalarFieldEnum = (typeof ProjectsScalarFieldEnum)[keyof typeof ProjectsScalarFieldEnum]
 
 
 export const SortOrder = {
