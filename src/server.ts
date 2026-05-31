@@ -12,6 +12,7 @@ import http from "http";
 import { broadcastMessage } from "./websockets/socket";
 import projectRoutes from "./routes/project.routes";
 import sidebarRoutes from "./routes/sidebar.routes";
+import authRoutes from "./routes/auth.routes"
 
 dotenv.config();
 
@@ -48,6 +49,7 @@ app.get("/db-test", async (_req, res) => {
 
 app.use("/chat", chatRoutes);
 app.use("/projects", projectRoutes);
+app.use("/auth", authRoutes);
 app.use("/sidebar", sidebarRoutes);
 
 app.get("/intent-test",async (_req,res)=>{

@@ -12,6 +12,87 @@ All POST APIs accept JSON request bodies. Use this header for requests with a bo
 Content-Type: application/json
 ```
 
+## Auth APIs
+
+### POST `/auth/register`
+
+Full URL:
+
+```text
+https://local-agent-be.onrender.com/auth/register
+```
+
+Creates a new user account and returns a JWT token.
+
+Payload:
+
+```json
+{
+  "name": "Arul",
+  "email": "arul@example.com",
+  "password": "password123"
+}
+```
+
+Required fields:
+
+- `name`: string, required, 2 to 120 characters
+- `email`: valid email string, required
+- `password`: string, required, 8 to 100 characters
+
+Example response:
+
+```json
+{
+  "success": true,
+  "user": {
+    "id": "user-uuid",
+    "name": "Arul",
+    "email": "arul@example.com"
+  },
+  "token": "jwt-token"
+}
+```
+
+### POST `/auth/login`
+
+Full URL:
+
+```text
+https://local-agent-be.onrender.com/auth/login
+```
+
+Logs in an existing user and returns a JWT token.
+
+Payload:
+
+```json
+{
+  "email": "arul@example.com",
+  "password": "password123"
+}
+```
+
+Required fields:
+
+- `email`: valid email string, required
+- `password`: string, required, 8 to 100 characters
+
+Example response:
+
+```json
+{
+  "success": true,
+  "user": {
+    "id": "user-uuid",
+    "name": "Arul",
+    "email": "arul@example.com"
+  },
+  "message": "Arul you have logged in successfully",
+  "token": "jwt-token"
+}
+```
+
 ## Health / Test APIs
 
 ### GET `/health`

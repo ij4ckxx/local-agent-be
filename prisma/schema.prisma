@@ -137,6 +137,7 @@ model users {
   id             String           @id @db.Uuid
   name           String           @db.VarChar(120)
   email          String?          @unique @db.VarChar(255)
+  password_hash  String?          @db.VarChar(255)
   avatar_url     String?
   created_at     DateTime         @db.Timestamp(6)
   updated_at     DateTime         @db.Timestamp(6)
